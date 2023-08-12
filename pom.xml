@@ -38,6 +38,7 @@
     <mappingtable.version>0.3.2</mappingtable.version>
     <mockserver.version>5.15.0</mockserver.version>
     <slack-api-client.version>1.30.0</slack-api-client.version>
+    <cxf.version>4.0.2</cxf.version>
   </properties>
 
   <dependencies>
@@ -46,16 +47,7 @@
       <artifactId>api-java</artifactId>
       <version>0.3.0</version>
     </dependency>
-    <dependency>
-      <groupId>no.cantara.realestate</groupId>
-      <artifactId>typelib-java</artifactId>
-      <version>0.3.1</version>
-    </dependency>
-    <dependency>
-      <groupId>no.cantara.realestate</groupId>
-      <artifactId>azure-client-java</artifactId>
-      <version>0.2.2</version>
-    </dependency>
+
     <dependency>
       <groupId>no.cantara.stingray</groupId>
       <artifactId>stingray-application</artifactId>
@@ -72,6 +64,22 @@
       <artifactId>stingray-security</artifactId>
       <version>${stingray.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-rs-client</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-rs-sse</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
