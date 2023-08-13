@@ -1,11 +1,6 @@
 package no.cantara.sse;
 
 
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.sse.SseEventSource;
-import org.apache.cxf.feature.Feature;
 import org.slf4j.Logger;
 
 import java.net.URI;
@@ -25,7 +20,7 @@ public class SseClient {
         String bearerToken = args[1];
 
         URI sseUri = new URI(sseUrl);
-
+/*
         log.info("Subscribing to SSE events from {}", sseUrl);
         Client client = ClientBuilder.newClient();
         Feature feature = //FIXME How to find the correct Bearer_Token feature?
@@ -40,6 +35,8 @@ public class SseClient {
 
             source.close();
         }
+
+ */
         /*
 //        Client client = ClientBuilder.newClient();
 //        WebClient client = WebClient.create(sseUri);
