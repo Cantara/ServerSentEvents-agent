@@ -1,14 +1,11 @@
 package no.cantara.sse;
 
-//import javax.ws.rs.client.ClientBuilder;
-//import javax.ws.rs.client.WebTarget;
-//import javax.ws.rs.sse.SseEventSource;
 
+import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.core.HttpHeaders;
-import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.sse.SseEventSource;
+import org.apache.cxf.feature.Feature;
 import org.slf4j.Logger;
 
 import java.net.URI;
@@ -30,8 +27,38 @@ public class SseClient {
         URI sseUri = new URI(sseUrl);
 
         log.info("Subscribing to SSE events from {}", sseUrl);
-        WebTarget target = ClientBuilder.newClient().target(sseUri);
-        target.request(MediaType.SERVER_SENT_EVENTS).header(HttpHeaders.AUTHORIZATION, "Bearer " + bearerToken);
+        Client client = ClientBuilder.newClient();
+        Feature feature = //FIXME How to find the correct Bearer_Token feature?
+        client.register()
+        WebTarget target = client.target(sseUrl);
+        try (SseEventSource source = SseEventSource.target(target).build()) {
+            source.register((inboundSseEvent) -> System.out.println(inboundSseEvent));
+            source.open();
+            Thread.sleep(1000);
+            log.info("Connection is open? {}", source.isOpen());
+            Thread.sleep(3600000);
+
+            source.close();
+        }
+        /*
+//        Client client = ClientBuilder.newClient();
+//        WebClient client = WebClient.create(sseUri);
+//        client.header(HttpHeaders.AUTHORIZATION, "Bearer " + bearerToken);
+//        Feature feature = OAuth2ClientSupport.feature(bearerToken);
+//        client.register(feature);
+        WebClient wc = WebClient.create(sseUri);
+        wc.header(HttpHeaders.AUTHORIZATION, "Bearer " + bearerToken);
+        TLSConfiguration sscConfig = null;
+        Configuration config;
+        config = null;
+        WebTargetImpl target = new ClientImpl(config, sscConfig).WebTargetImpl(wc, sseUri);
+        Client client = new ClientImpl(ClientBuilder.newClient());
+          target = client.
+                  new WebTargetImpl(client, sseUri);
+//                .request(MediaType.SERVER_SENT_EVENTS)
+//                .header(HttpHeaders.AUTHORIZATION, "Bearer " + bearerToken)
+//                .
+//                .buildGet();
 //        target.property("Authentication", "Bearer " + bearerToken);
         SseEventSource eventSource = SseEventSource.target(target).build();
         eventSource.register(event -> {
@@ -51,10 +78,13 @@ public class SseClient {
             log.error("Error opening connection to {}", sseUrl, e);
             System.exit(1);
         }
-        Thread.sleep(1000);
+         Thread.sleep(1000);
         log.info("Connection is open? {}", eventSource.isOpen());
         Thread.sleep(sec *1000);
 
         eventSource.close();
+        `
+         */
+
     }
 }
