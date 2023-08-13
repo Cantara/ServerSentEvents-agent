@@ -9,9 +9,9 @@
 
     <appender name="RF"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${MAPPING_TABLE_APP_HOME}/mapping-table-app.log</file>
+        <file>${MAPPING_TABLE_APP_HOME}/ServerSentEvents.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${MAPPING_TABLE_APP_HOME}/mapping-table-app-%d{dd.MM.yyyy}.%i.log</fileNamePattern>
+            <fileNamePattern>${MAPPING_TABLE_APP_HOME}/ServerSentEvents-%d{dd.MM.yyyy}.%i.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <maxFileSize>200MB</maxFileSize>
             <totalSizeCap>5GB</totalSizeCap>
@@ -34,8 +34,12 @@
         <appender-ref ref="RF"/>
         <appender-ref ref="STDOUT" />
     </logger>
+    <logger name="org.apache.cxf.jaxrs.sse.client" level="trace" additivity="false">
+        <appender-ref ref="RF"/>
+        <appender-ref ref="STDOUT" />
+    </logger>
 
-    <root level="INFO">
+    <root level="trace">
         <appender-ref ref="RF"/>
         <appender-ref ref="STDOUT" />
     </root>
