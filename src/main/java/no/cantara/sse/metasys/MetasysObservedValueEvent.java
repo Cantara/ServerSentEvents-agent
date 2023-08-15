@@ -9,6 +9,7 @@ public class MetasysObservedValueEvent extends StreamEvent {
     public MetasysObservedValueEvent(String id, String comment, String data) {
         super(id, name, comment, data);
         this.observedValue = StreamEventMapper.mapFromJson(data);
+        observedValue.setReceivedAt(getReceivedAt());
     }
 
     public MetasysObservedValueEvent(String id, String comment, String data, ObservedValue observedValue) {
