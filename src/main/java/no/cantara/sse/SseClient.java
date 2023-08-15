@@ -44,8 +44,6 @@ public class SseClient {
                 .request()
                 .header("Authorization", "Bearer " + bearerToken)
                 .get(EventInput.class);
-        StreamEvent openEvent = EventInputMapper.toOpenEvent(eventInput);
-        streamListener.onEvent(openEvent);
         try {
             while (!eventInput.isClosed()) {
                 InboundEvent inboundEvent = eventInput.read();
@@ -58,13 +56,11 @@ public class SseClient {
                             .request()
                             .header("Authorization", "Bearer " + bearerToken)
                             .get(EventInput.class);
-                    openEvent = EventInputMapper.toOpenEvent(eventInput);
-                    streamListener.onEvent(openEvent);
                 } else {
                     String data = inboundEvent.readData(String.class);
                     System.out.println("Received Event: " + data);
                     log.trace("Received Event: id: {}, name: {}, comment: {}, \ndata: {}", inboundEvent.getId(), inboundEvent.getName(), inboundEvent.getComment(), data);
-                    StreamEvent streamEvent = EventInputMapper.toObservedEvent(inboundEvent);
+                    StreamEvent streamEvent = EventInputMapper.toStreamEvent(inboundEvent);
                     streamListener.onEvent(streamEvent);
                 }
             }

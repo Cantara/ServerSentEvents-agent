@@ -6,6 +6,10 @@ public class StreamEvent {
     private final String comment;
     private final String data;
 
+    public StreamEvent(String id, String name) {
+        this(id, name, null, null);
+    }
+
     public StreamEvent(String id, String name, String comment, String data) {
         this.id = id;
         this.name = name;
