@@ -1,8 +1,6 @@
-package no.cantara.sse;
+package no.cantara.sse.metasys;
 
-import no.cantara.sse.metasys.MetasysHeartbeatStreamEvent;
-import no.cantara.sse.metasys.MetasysObservedValueEvent;
-import no.cantara.sse.metasys.MetasysOpenStreamEvent;
+import no.cantara.sse.StreamEvent;
 import org.glassfish.jersey.media.sse.InboundEvent;
 import org.slf4j.Logger;
 
