@@ -1,10 +1,16 @@
 package no.cantara.sse;
 
+import java.time.Instant;
+
 public class StreamEvent {
     private final String id;
     private final String name;
     private final String comment;
     private final String data;
+
+    private Instant observedAt;
+
+    private Instant receivedAt;
 
     public StreamEvent(String id, String name) {
         this(id, name, null, null);
@@ -15,6 +21,7 @@ public class StreamEvent {
         this.name = name;
         this.comment = comment;
         this.data = data;
+        this.receivedAt = Instant.now();
     }
 
     public String getId() {
@@ -33,6 +40,22 @@ public class StreamEvent {
         return data;
     }
 
+    public Instant getObservedAt() {
+        return observedAt;
+    }
+
+    public void setObservedAt(Instant observedAt) {
+        this.observedAt = observedAt;
+    }
+
+    public Instant getReceivedAt() {
+        return receivedAt;
+    }
+
+    public void setReceivedAt(Instant receivedAt) {
+        this.receivedAt = receivedAt;
+    }
+
     @Override
     public String toString() {
         return "StreamEvent{" +
@@ -40,6 +63,8 @@ public class StreamEvent {
                 ", name='" + name + '\'' +
                 ", comment='" + comment + '\'' +
                 ", data='" + data + '\'' +
+                ", observedAt=" + observedAt +
+                ", receivedAt=" + receivedAt +
                 '}';
     }
 }

@@ -17,6 +17,8 @@ public class MetasysOpenStreamEvent extends StreamEvent {
 
     @Override
     public String toString() {
-        return "MetasysOpenStreamEvent{} " + super.toString();
+        return "MetasysOpenStreamEvent{" +
+                "subscriptionId='" + subscriptionId + '\'' +
+                "} " + super.toString();
     }
 }

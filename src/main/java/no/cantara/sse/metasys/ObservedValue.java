@@ -56,4 +56,15 @@ public class ObservedValue {
     public void setItemReference(String itemReference) {
         this.itemReference = itemReference;
     }
+
+    @Override
+    public String toString() {
+        return "ObservedValue{" +
+                "id='" + id + '\'' +
+                ", value=" + value +
+                ", observedAt=" + observedAt +
+                ", receivedAt=" + receivedAt +
+                ", itemReference='" + itemReference + '\'' +
+                '}';
+    }
 }

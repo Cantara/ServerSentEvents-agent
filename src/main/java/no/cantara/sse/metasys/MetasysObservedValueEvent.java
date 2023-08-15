@@ -19,4 +19,11 @@ public class MetasysObservedValueEvent extends StreamEvent {
     public ObservedValue getObservedValue() {
         return observedValue;
     }
+
+    @Override
+    public String toString() {
+        return "MetasysObservedValueEvent{" +
+                "observedValue=" + observedValue +
+                "} " + super.toString();
+    }
 }

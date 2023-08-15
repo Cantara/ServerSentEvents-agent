@@ -13,4 +13,9 @@ public class MetasysHeartbeatStreamEvent extends StreamEvent {
     public Instant getTimestamp() {
         return Instant.parse(getData());
     }
+
+    @Override
+    public String toString() {
+        return "MetasysHeartbeatStreamEvent{} " + super.toString();
+    }
 }
